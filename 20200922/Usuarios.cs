@@ -6,7 +6,7 @@ using System.Text;
 
 namespace _20200922
 {
-    class Usuarios
+   public class Usuarios
     {
         public int id { get; set; }
         public string Usuario { get; set; }
