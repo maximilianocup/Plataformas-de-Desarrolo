@@ -1,0 +1,66 @@
+﻿@page "/usuarios/listado"
+@using BlazorApp1.Data
+@inject UsuarioService service
+@inject NavigationManager navigation
+@inject IJSRuntime JsRuntime
+
+<h3>Listado</h3>
+<button class="btn" @onclick="()=>Editar(0)">Nuevo</button>
+
+<p>Visualizador de los Usuarios</p>
+
+@if (usuarios == null)
+{
+<p><em>Loading...</em></p> }
+            else
+            {
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nombre</th>
+            <th>Pass</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in usuarios)
+        {
+<tr>
+    <td>@user.id</td>
+    <td>@user.Nombre</td>
+    <td>@user.Clave</td>
+    <td>
+        <button class="btn btn-info" @onclick="()=>Editar(user.id)">
+            Editar
+        </button> <button class="btn btn-danger" @onclick="()=>Borrar(user.id)">Borrar</button>
+    </td>
+</tr>}
+    </tbody>
+</table>
+
+}
+
+@code {
+    private List<Usuario> usuarios;
+
+    protected override async Task OnInitializedAsync()
+    {
+        usuarios = await service.ListUser();
+    }
+
+    protected void Editar(int id)
+    {
+        navigation.NavigateTo("usuarios/editar/" + id);
+    }
+
+    async Task Borrar(int id)
+    {
+        bool confirmed = await JsRuntime.InvokeAsync<bool>("confirm", "Desea elimiar el usuario?");
+        if (confirmed)
+        {
+            await service.DeleteUser(id);
+            usuarios = await service.ListUser();
+        }
+    }
+}
