@@ -1,5 +1,6 @@
 ﻿@page "/usuarios/listado"
 @using BlazorApp1.Data
+@using Model.Entidades
 @inject UsuarioService service
 @inject NavigationManager navigation
 @inject IJSRuntime JsRuntime
@@ -59,7 +60,7 @@
         bool confirmed = await JsRuntime.InvokeAsync<bool>("confirm", "Desea elimiar el usuario?");
         if (confirmed)
         {
-            await service.DeleteUser(id);
+            
             usuarios = await service.ListUser();
         }
     }

@@ -23,8 +23,7 @@ namespace WebApplication1.Migrations
                         .HasColumnName("detId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Fecha")
-                        .IsRequired()
+                    b.Property<DateTime>("Fecha")
                         .HasColumnName("fecha")
                         .HasColumnType("TEXT");
 
@@ -34,8 +33,7 @@ namespace WebApplication1.Migrations
                     b.Property<int>("TareaId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Tiempo")
-                        .IsRequired()
+                    b.Property<int>("Tiempo")
                         .HasColumnName("tiempo")
                         .HasColumnType("int(5)");
 

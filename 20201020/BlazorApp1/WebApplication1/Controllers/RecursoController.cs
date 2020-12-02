@@ -9,32 +9,35 @@ using Microsoft.EntityFrameworkCore;
 
 namespace WebApplication1.Controllers
 {
+
     [Route("api/[controller]")]
     [ApiController]
-    public class DetalleController : ControllerBase
+    public class RecursoController : ControllerBase
     {
         private readonly DataContext _context;
 
-        public DetalleController(DataContext context)
+        public RecursoController(DataContext context)
         {
             _context = context;
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Detalle>>> Get()
+        public async Task<ActionResult<IEnumerable<Recurso>>> Get()
         {
-            return await _context.Detalles.Include(i => i.Recurso).Include(i => i.Tarea).AsNoTracking().ToListAsync();
+            return await _context.Recursos.Include(i => i.Usuario).AsNoTracking().ToListAsync();
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Detalle>> GetDetail(int id)
+        public async Task<ActionResult<Recurso>> GetResource(int id)
         {
-            return await _context.Detalles.Where(i => i.id == id).AsNoTracking().SingleAsync();
+            return await _context.Recursos.Where(i => i.id == id).AsNoTracking().SingleAsync();
         }
 
         [HttpPost]
-        public async Task<ActionResult<Detalle>> Post(Detalle valor)
+        public async Task<ActionResult<Recurso>> Post(Recurso valor)
         {
+            
+
             if (valor.id == 0)
             {
                 _context.Entry(valor).State = EntityState.Added;
@@ -44,11 +47,11 @@ namespace WebApplication1.Controllers
                 _context.Entry(valor).State = EntityState.Modified;
             }
 
-
+            
             await _context.SaveChangesAsync();
             return valor;
         }
 
-       
     }
 }
+    

@@ -1,9 +1,11 @@
 ﻿@page "/Detalles/Editar/{id:int}"
 @using BlazorApp1.Data
+@using Model.Entidades
 @inject DetalleService DetalleService
 @inject RecursoService RecursoService
 @inject TareaService TareaService
 @inject NavigationManager navigation
+
 
 <EditForm Model="@Modelo" OnValidSubmit="@Guardar">
     <DataAnnotationsValidator />

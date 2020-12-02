@@ -1,39 +1,39 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Model.Entidades;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Model.Entidades;
 using WebApplication1.Data;
-using Microsoft.EntityFrameworkCore;
 
 namespace WebApplication1.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class DetalleController : ControllerBase
+    public class UsuarioController
     {
         private readonly DataContext _context;
 
-        public DetalleController(DataContext context)
+        public UsuarioController(DataContext context)
         {
             _context = context;
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Detalle>>> Get()
+        public async Task<ActionResult<IEnumerable<Usuario>>> Get()
         {
-            return await _context.Detalles.Include(i => i.Recurso).Include(i => i.Tarea).AsNoTracking().ToListAsync();
+            return await _context.Usuarios.AsNoTracking().ToListAsync();
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Detalle>> GetDetail(int id)
+        public async Task<ActionResult<Usuario>> GetUser(int id)
         {
-            return await _context.Detalles.Where(i => i.id == id).AsNoTracking().SingleAsync();
+            return await _context.Usuarios.Where(i => i.id == id).AsNoTracking().SingleAsync();
         }
 
         [HttpPost]
-        public async Task<ActionResult<Detalle>> Post(Detalle valor)
+        public async Task<ActionResult<Usuario>> Post(Usuario valor)
         {
             if (valor.id == 0)
             {
@@ -49,6 +49,8 @@ namespace WebApplication1.Controllers
             return valor;
         }
 
-       
+        
+
+        
     }
 }

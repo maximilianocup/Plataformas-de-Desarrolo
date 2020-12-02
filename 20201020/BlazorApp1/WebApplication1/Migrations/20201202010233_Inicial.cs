@@ -70,8 +70,8 @@ namespace WebApplication1.Migrations
                 {
                     detId = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    fecha = table.Column<string>(nullable: false),
-                    tiempo = table.Column<string>(type: "int(5)", nullable: false),
+                    fecha = table.Column<DateTime>(nullable: false),
+                    tiempo = table.Column<int>(type: "int(5)", nullable: false),
                     RecursoId = table.Column<int>(nullable: false),
                     TareaId = table.Column<int>(nullable: false)
                 },

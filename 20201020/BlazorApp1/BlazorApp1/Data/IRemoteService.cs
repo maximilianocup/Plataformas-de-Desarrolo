@@ -1,4 +1,5 @@
-﻿using Refit;
+﻿using Model.Entidades;
+using Refit;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,7 @@ namespace BlazorApp1.Data
 {
     public interface IRemoteService
     {
-        // Métodos de Tarea
+        
         [Get("/Tarea")]
         Task<List<Tarea>> GetAllTarea();
 
@@ -20,7 +21,7 @@ namespace BlazorApp1.Data
 
         
 
-        // Métodos de Usuario
+        
         [Get("/Usuario")]
         Task<List<Usuario>> GetAllUsuario();
 
@@ -33,7 +34,7 @@ namespace BlazorApp1.Data
 
         
 
-        // Métodos de Detalle
+        
         [Get("/Detalle")]
         Task<List<Detalle>> GetAllDetalle();
 
@@ -45,7 +46,7 @@ namespace BlazorApp1.Data
 
        
 
-        // Métodos de Recurso
+        
         [Get("/Recurso")]
         Task<List<Recurso>> GetAllRecurso();
 

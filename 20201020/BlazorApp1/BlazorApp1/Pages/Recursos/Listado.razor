@@ -1,5 +1,6 @@
 ﻿@page "/Recursos/Listado"
 @using BlazorApp1.Data
+@using Model.Entidades
 @inject RecursoService RecursoService
 @inject NavigationManager navigation
 @inject IJSRuntime JsRuntime
@@ -60,7 +61,7 @@
         bool confirmed = await JsRuntime.InvokeAsync<bool>("confirm", "Desea elimiar el Recurso?");
         if (confirmed)
         {
-            await RecursoService.DeleteResource(id);
+            
             recursos = await RecursoService.ListResource();
         }
     }
