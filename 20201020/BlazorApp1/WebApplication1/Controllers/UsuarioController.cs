@@ -51,7 +51,7 @@ namespace WebApplication1.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            var user = _context.Usuarios.Where(i => i.id== id).Single();
+            var user =  _context.Usuarios.Where(i => i.id== id).Single();
 
             _context.Usuarios.Remove(user);
             await _context.SaveChangesAsync();

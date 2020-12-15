@@ -52,6 +52,7 @@ namespace WebApplication1.Controllers
             return valor;
         }
 
+        [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
             var resource = await _context.Recursos.Where(i => i.id == id).SingleAsync();
