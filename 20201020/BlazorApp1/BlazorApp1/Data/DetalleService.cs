@@ -32,6 +32,14 @@ namespace BlazorApp1.Data
             return await remoteService.GuardarDetalle(value);
         }
 
-        
+        public async Task<bool> DeleteDetail(int id)
+        {
+            
+            var remoteService = RestService.For<IRemoteService>("https://localhost:44332/api/");
+            await remoteService.BorrarDetalle(id);
+            return true;
+        }
+
+
     }
 }

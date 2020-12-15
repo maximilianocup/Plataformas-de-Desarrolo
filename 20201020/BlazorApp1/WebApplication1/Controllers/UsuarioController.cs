@@ -1,11 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Model.Entidades;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Model.Entidades;
 using WebApplication1.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace WebApplication1.Controllers
 {
@@ -48,9 +48,20 @@ namespace WebApplication1.Controllers
             await _context.SaveChangesAsync();
             return valor;
         }
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var user = _context.Usuarios.Where(i => i.id== id).Single();
 
-        
+            _context.Usuarios.Remove(user);
+            await _context.SaveChangesAsync();
 
-        
+            return NoContent();
+        }
+
+        private IActionResult NoContent()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -32,13 +32,7 @@ namespace WebApplication1.Controllers
             return await _context.Tareas.Where(i => i.id == id).AsNoTracking().SingleAsync();
         }
 
-        //[HttpPut("/{id}")]
-        //public async Task<Tarea> Put(Tarea valor)
-        //{
-        //    _context.Entry(valor).State = EntityState.Modified;
-        //    await _context.SaveChangesAsync();
-        //    return valor;
-        //}
+        
 
         [HttpPost]
         public async Task<ActionResult<Tarea>> Post(Tarea valor)

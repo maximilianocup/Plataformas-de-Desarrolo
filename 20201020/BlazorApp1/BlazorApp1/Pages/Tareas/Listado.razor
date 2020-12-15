@@ -66,7 +66,7 @@
         bool confirmed = await JsRuntime.InvokeAsync<bool>("confirm", "Desea elimiar la Tarea?");
         if (confirmed)
         {
-            
+            await TareaService.DeleteTask(id);
             tareas = await TareaService.ListTask();
         }
     }

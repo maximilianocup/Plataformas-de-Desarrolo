@@ -1,9 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Refit;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Refit;
 using Model.Entidades;
 
 namespace BlazorApp1.Data
@@ -29,7 +28,15 @@ namespace BlazorApp1.Data
             return await remoteService.GuardarUsuario(value);
         }
 
-        
+
+        public async Task<bool> DeleteUser(int id)
+        {
+            var remoteService = RestService.For<IRemoteService>("https://localhost:44332/api/");
+            await remoteService.BorrarUsuario(id);
+            return true;
+        }
+
+
 
 
 

@@ -31,6 +31,14 @@ namespace BlazorApp1.Data
             return await remoteService.GuardarRecurso(value);
         }
 
-       
+        public async Task<bool> DeleteResource(int id)
+        {
+            
+            var remoteService = RestService.For<IRemoteService>("https://localhost:44332/api/");
+            await remoteService.BorrarRecurso(id);
+            return true;
+        }
+
+
     }
 }

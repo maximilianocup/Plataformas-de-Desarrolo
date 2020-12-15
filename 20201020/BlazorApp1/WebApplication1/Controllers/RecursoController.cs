@@ -52,6 +52,16 @@ namespace WebApplication1.Controllers
             return valor;
         }
 
+        public async Task<IActionResult> Delete(int id)
+        {
+            var resource = await _context.Recursos.Where(i => i.id == id).SingleAsync();
+
+            _context.Recursos.Remove(resource);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
+
     }
 }
     

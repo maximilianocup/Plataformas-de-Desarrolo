@@ -49,6 +49,18 @@ namespace WebApplication1.Controllers
             return valor;
         }
 
-       
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var detail = _context.Detalles.Where(i => i.id == id).Single();
+
+            _context.Detalles.Remove(detail);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
+
+
     }
 }
